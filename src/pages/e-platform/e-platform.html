@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>e-Platform</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content class="home">
+   <ion-refresher (ionRefresh)="doRefresh($event)">
+  <ion-refresher-content
+      pullingIcon="arrow-dropdown"
+      pullingText="Pull to refresh"
+      refreshingSpinner="bubbles"
+      refreshingText="Loading...">
+</ion-refresher-content>
+     </ion-refresher>
+ 
+     <ion-list text-wrap>
+    <ion-card ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">
+    <h2 [innerHTML]="item.title.rendered"></h2>
+    <p [innerHTML]="item.excerpt.rendered"></p>
+    
+<ion-row>
+      
+  <ion-col>
+        
+    <button ion-button (click)="otherShare()" style="float: right;" ><ion-icon name="share-alt"> Share</ion-icon></button>
+
+  </ion-col>
+        
+      
+ </ion-row>
+  
+
+</ion-card>
+
+  </ion-list>
+
+  
+
+  <ion-infinite-scroll (ionInfinite)="loadMore($event)">
+ <ion-infinite-scroll-content></ion-infinite-scroll-content>
+</ion-infinite-scroll>
+</ion-content>
